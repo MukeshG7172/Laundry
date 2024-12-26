@@ -14,6 +14,7 @@ const ListClientPage = ({ user }) => {
   const [editingId, setEditingId] = useState('');
   const [editingList, setEditingList] = useState('');
   const [editingGroup, setEditingGroup] = useState('');
+  const [editingStatus, setEditingStatus] = useState(false);
   const [selectedGroupFilter, setSelectedGroupFilter] = useState('all');
 
   const fetchList = async () => {
@@ -107,6 +108,7 @@ const ListClientPage = ({ user }) => {
     setEditingId(item.id);
     setEditingGroup(item.group);
     setEditingList(item.list);
+    setEditingStatus(item.status);
   }
 
   const handleSaveEdit = async (id) => {
@@ -115,7 +117,7 @@ const ListClientPage = ({ user }) => {
       const response = await fetch('/api/list/edit', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id, list: editingList, group: editingGroup }),
+        body: JSON.stringify({ id, list: editingList, group: editingGroup, status: editingStatus }),
       });
 
       if (!response.ok) {

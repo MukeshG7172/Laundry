@@ -4,9 +4,9 @@ import prisma from "@/lib/prisma";
 export async function PUT(request) {
     try {
         const body = await request.json();
-        const { id, list, group } = body;
+        const { id, list, group, status } = body;
 
-        if (!id || !list || !group) {
+        if (!id || !list || !group ||!status) {
             return NextResponse.json(
                 { error: 'Missing required fields' },
                 { status: 400 }
@@ -19,7 +19,8 @@ export async function PUT(request) {
             },
             data: {
                 list: list,
-                group: group
+                group: group,
+                status: status,
             }
         });
 
