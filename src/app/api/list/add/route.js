@@ -20,12 +20,10 @@ export async function POST(request) {
             },
         });
         return NextResponse.json({ success: true, item: newList }, { status: 201 });
-    } catch {
-        if (error) {
-            return NextResponse.json(
-                { error: "An error occurred while adding the item" },
-                { status: 500 }
-            );
-        }
+    } catch (error) {
+        return NextResponse.json(
+            { error: "An error occurred while adding the item" },
+            { status: 500 }
+        );
     }
 }
